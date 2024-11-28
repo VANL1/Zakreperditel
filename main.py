@@ -34,6 +34,8 @@ def start(message):
         bot.send_message(message.chat.id, 'Ссылка на гитхаб с исходником https://github.com/VANL1/Zakreperditel')
 
 
+chats_id = (-1002269645021, 1036894021)
+
 @bot.message_handler(content_types=['text'])
 def what(message):
     if message.text == 'Что?':
@@ -41,6 +43,11 @@ def what(message):
         bot.reply_to(message, "Паташти, йа ни такафарил")
         sleep(3)
         bot.send_message(message.chat.id, 'ЖОПА ПАНОС КАВНО')
+    elif message.text == 'А я сиськи палитры трогал':
+        bot.send_message(message.chat.id, 'ХААААААААААААРОООООООШШШШШШ')
+    elif message.chat.id == 1036894021:
+        for i in chats_id:
+            bot.send_message(i, message.text)
 
 
 @bot.message_handler(content_types=['poll'])
