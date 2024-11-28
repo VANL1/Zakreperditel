@@ -6,6 +6,7 @@ from time import sleep
 
 bot = telebot.TeleBot(config.token_tg)
 
+chats_id = (-1002269645021, 1036894021)
 
 @bot.message_handler(commands=['start', 'pp', 'sigma', 'trophies', 'victories', 'total_sigma', 'github'])
 def start(message):
@@ -33,8 +34,6 @@ def start(message):
     elif '/github' in message.text:
         bot.send_message(message.chat.id, 'Ссылка на гитхаб с исходником https://github.com/VANL1/Zakreperditel')
 
-
-chats_id = (-1002269645021, 1036894021)
 
 @bot.message_handler(content_types=['text'])
 def what(message):
