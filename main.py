@@ -3,15 +3,17 @@ import bs_api
 import config
 from random import randint
 from time import sleep
+from chats import write_ids
+from schedule import time_until_end_of_lesson
 
 bot = telebot.TeleBot(config.token_tg)
 
-chats_id = (-1002269645021, 1036894021)
 
-@bot.message_handler(commands=['start', 'pp', 'sigma', 'trophies', 'victories', 'total_sigma', 'github'])
+@bot.message_handler(commands=['start', 'pp', 'sigma', 'trophies', 'victories', 'total_sigma', 'github', 'end_lesson'])
 def start(message):
     if '/start' in message.text:
         bot.send_message(message.chat.id, "Пук пуги кагажки пертеж пипэски")
+        write_ids(message.chat.id)
     elif '/pp' in message.text:
         x = randint(0, 8)
         bot.reply_to(message, config.penises[int(x)])
@@ -33,6 +35,8 @@ def start(message):
         bot.send_message(message.chat.id, 'ЕБАТЬ ОН СИГМА')
     elif '/github' in message.text:
         bot.send_message(message.chat.id, 'Ссылка на гитхаб с исходником https://github.com/VANL1/Zakreperditel')
+    elif '/end_lesson' in message.text:
+        bot.send_message(message.chat.id, time_until_end_of_lesson())
 
 
 @bot.message_handler(content_types=['text'])
@@ -45,8 +49,15 @@ def what(message):
     elif message.text == 'А я сиськи палитры трогал':
         bot.send_message(message.chat.id, 'ХААААААААААААРОООООООШШШШШШ')
     elif message.chat.id == 1036894021:
-        for i in chats_id:
-            bot.send_message(i, message.text)
+        with open('chats_ids.txt') as p:
+            penis = []
+            for g in p:
+                penis.append(int(g[:-1]))
+        for i in penis:
+            if i < 0 and i != -1002066813369:
+                bot.send_message(i, message.text)
+
+    write_ids(message.chat.id)
 
 
 @bot.message_handler(content_types=['poll'])
