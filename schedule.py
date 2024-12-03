@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime, time
+import pytz
+
+time_zone = pytz.timezone('Etc/GMT-3')
 
 end_times = {
     '1': time(9, 40),
@@ -14,12 +17,14 @@ end_times = {
 
 
 def time_until_end_of_lesson():
-    now = datetime.now().time()
+    now = datetime.now(time_zone).time()
 
     for lesson, end_time in end_times.items():
         if now < end_time:
             remaining_time = datetime.combine(datetime.today(), end_time) - datetime.combine(datetime.today(), now)
             minutes, seconds = divmod(remaining_time.total_seconds(), 60)
             return f"До конца урока осталось: {int(minutes)} минут и {int(seconds)} секунд."
-        else:
-            return f'Уроки закончились😎🤙'
+    return f'Уроки закончились😎🤙'
+
+
+print(time_until_end_of_lesson())
