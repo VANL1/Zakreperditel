@@ -21,5 +21,5 @@ def time_until_end_of_lesson():
             remaining_time = datetime.combine(datetime.today(), end_time) - datetime.combine(datetime.today(), now)
             minutes, seconds = divmod(remaining_time.total_seconds(), 60)
             return f"До конца урока осталось: {int(minutes)} минут и {int(seconds)} секунд."
-        else:
-            return f'Уроки закончились😎🤙'
+    return f'Уроки закончились😎🤙'
+

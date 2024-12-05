@@ -5,11 +5,13 @@ from random import randint
 from time import sleep
 from chats import write_ids
 from schedule import time_until_end_of_lesson
+import tbank
 
 bot = telebot.TeleBot(config.token_tg)
 
 
-@bot.message_handler(commands=['start', 'pp', 'sigma', 'trophies', 'victories', 'total_sigma', 'github', 'end_lesson'])
+@bot.message_handler(commands=['start', 'pp', 'sigma', 'trophies', 'victories', 'total_sigma', 'github', 'end_lesson',
+                               'money'])
 def start(message):
     if '/start' in message.text:
         bot.send_message(message.chat.id, "Пук пуги кагажки пертеж пипэски")
@@ -37,6 +39,9 @@ def start(message):
         bot.send_message(message.chat.id, 'Ссылка на гитхаб с исходником https://github.com/VANL1/Zakreperditel')
     elif '/end_lesson' in message.text:
         bot.send_message(message.chat.id, time_until_end_of_lesson())
+    elif '/money' in message.text:
+        bot.send_message(message.chat.id, f'У Васи на брокерском счету {tbank.money()}рбулей')
+        bot.send_message(message.chat.id,'Ебать он бомж')
 
 
 @bot.message_handler(content_types=['text'])
@@ -48,15 +53,17 @@ def what(message):
         bot.send_message(message.chat.id, 'ЖОПА ПАНОС КАВНО')
     elif message.text == 'А я сиськи палитры трогал':
         bot.send_message(message.chat.id, 'ХААААААААААААРОООООООШШШШШШ')
-    elif message.chat.id == 1036894021:
-        with open('chats_ids.txt') as p:
+    elif message.text == 'ZOV':
+        bot.send_message(message.chat.id, 'ГОЙДА')
+    elif message.chat.id == 1036894021 or message.chat.id == 1854520294:
+        with open('chats_ids.txt', 'r') as p:
             penis = []
             for g in p:
                 penis.append(int(g[:-1]))
         for i in penis:
             if i < 0 and i != -1002066813369:
                 bot.send_message(i, message.text)
-
+        p.close()
     write_ids(message.chat.id)
 
 

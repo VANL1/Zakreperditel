@@ -20,4 +20,3 @@ def write_ids(new_d):
         data = []
         for i in f:
             data.append(int(i[:-1]))
-
