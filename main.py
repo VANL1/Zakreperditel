@@ -41,7 +41,7 @@ def start(message):
         bot.send_message(message.chat.id, time_until_end_of_lesson())
     elif '/money' in message.text:
         bot.send_message(message.chat.id, f'У Васи на брокерском счету {tbank.money()}рбулей')
-        bot.send_message(message.chat.id,'Ебать он бомж')
+        bot.send_message(message.chat.id, 'Ебать он бомж')
 
 
 @bot.message_handler(content_types=['text'])
@@ -70,6 +70,26 @@ def what(message):
 @bot.message_handler(content_types=['poll'])
 def f(message):
     bot.pin_chat_message(message.chat.id, message.id)
+
+
+@bot.message_handler(content_types=['pinned_message'])
+def delete_pin(message):
+    bot.delete_message(message.chat.id, message.id)
+
+
+@bot.message_handler(content_types=['video', 'photo'])
+def delete_pin(message):
+    if message.chat.id == 1036894021:
+        with open('chats_ids.txt', 'r') as p:
+            penis = []
+            for g in p:
+                penis.append(int(g[:-1]))
+        for i in penis:
+            if i < 0 and i != -1002066813369:
+                if message.content_type == 'video':
+                    bot.send_video(i, message.video.file_id)
+                else:
+                    bot.send_photo(i, message.photo[-1].file_id)
 
 
 bot.polling(none_stop=True)
