@@ -88,8 +88,8 @@ def what(message):
         bot.send_message(message.chat.id, "Иди нафиг со своё подсказкой")
         sleep(2)
         bot.send_message(message.chat.id, "Сам думай")
-    elif message.text == 'Тыквенные семечки'.lower():
-        pass
+    elif message.text.lower() == 'Тыквенные семечки'.lower():
+        bot.send_message(message.chat.id, "Третий ребус пока не придумал")
 
 
 @bot.message_handler(content_types=['poll'])
