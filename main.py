@@ -51,20 +51,45 @@ def what(message):
         bot.reply_to(message, "Паташти, йа ни такафарил")
         sleep(3)
         bot.send_message(message.chat.id, 'ЖОПА ПАНОС КАВНО')
-    elif message.text == 'А я сиськи палитры трогал':
-        bot.send_message(message.chat.id, 'ХААААААААААААРОООООООШШШШШШ')
     elif message.text == 'ZOV':
         bot.send_message(message.chat.id, 'ГОЙДА')
-    elif message.chat.id == 1036894021 or message.chat.id == 1854520294:
-        with open('chats_ids.txt', 'r') as p:
-            penis = []
-            for g in p:
-                penis.append(int(g[:-1]))
-        for i in penis:
-            if i < 0 and i != -1002066813369:
-                bot.send_message(i, message.text)
-        p.close()
-    write_ids(message.chat.id)
+    elif message.text == '1488':
+        bot.send_message(message.chat.id, 'Молодцы, вы справились со своей первой загадкой!')
+        sleep(2)
+        bot.send_message(message.chat.id, 'Ваша вторая загадка - это ребус')
+        sleep(2.2)
+        bot.send_message(message.chat.id, 'Угадаете и вы переходите на следующий уровень\n'
+                                          'Всего будет 3 уровня:\n'
+                                          '1.Простой\n'
+                                          '2.Посложнее\n'
+                                          '3.Самый сложный')
+        sleep(5)
+        bot.send_message(message.chat.id, 'У вас будет на эти три ребуса всего одна неделя.\n'
+                                          'Напишите "Яйца", как будете готовы угадывать')
+        sleep(4)
+
+        bot.send_message(message.chat.id, 'Если конечно...')
+        sleep(2)
+        bot.send_message(message.chat.id, 'Не боитесь')
+    elif message.text.lower() == 'Яйца'.lower():
+        bot.send_message(message.chat.id, 'ПЕРВЫЙ РЕБУС: \n'
+                                          '🎮 в 🦑')
+    elif message.text.lower() == 'Игра в кальмара'.lower():
+        bot.send_message(message.chat.id, 'ВТОРОЙ РЕБУС: \n'
+                                          'Если ты и вправду рассчитывал на ребус, хочу тебя огорчить, тут будет шифр')
+        sleep(4)
+        bot.send_message(message.chat.id, 'И если ты его разгадаешь, а ответ напишешь сюда, ты сможешь узнать секрет 3го задания')
+        sleep(4)
+        bot.send_message(message.chat.id, 'И чуть не забыл, проси подсказку если не будешь справляться(напаши "подсказка")')
+        bot.send_message(message.chat.id, 'Удачи')
+        bot.send_message(message.chat.id, 'Сам шифр:\n'
+                                          'пытюбииыб нбобктщ')
+    elif message.text.lower() == 'Подсказка'.lower():
+        bot.send_message(message.chat.id, "Иди нафиг со своё подсказкой")
+        sleep(2)
+        bot.send_message(message.chat.id, "Сам думай")
+    elif message.text == 'Тыквенные семечки'.lower():
+        pass
 
 
 @bot.message_handler(content_types=['poll'])

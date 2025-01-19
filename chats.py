@@ -2,7 +2,7 @@ def write_ids(new_d):
     with open('chats_ids.txt') as f:
         d = []
         for i in f:
-            d.append(int(i[0:]))
+            d.append(int(i))
     f.close()
     f = open('chats_ids.txt', 'a')
     if not new_d in d:
@@ -19,4 +19,4 @@ def write_ids(new_d):
     with open('chats_ids.txt') as f:
         data = []
         for i in f:
-            data.append(int(i[0:]))
+            data.append(int(i))
