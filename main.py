@@ -5,7 +5,7 @@ from random import randint
 from time import sleep
 from chats import write_ids
 from schedule import time_until_end_of_lesson
-import tbank
+import tbank  # Вырезать
 
 bot = telebot.TeleBot(config.token_tg)
 
@@ -46,6 +46,7 @@ def start(message):
 
 @bot.message_handler(content_types=['text'])
 def what(message):
+    print(message.chat.id)
     if message.text == 'Что?':
         sleep(2)
         bot.reply_to(message, "Паташти, йа ни такафарил")
@@ -78,9 +79,11 @@ def what(message):
         bot.send_message(message.chat.id, 'ВТОРОЙ РЕБУС: \n'
                                           'Если ты и вправду рассчитывал на ребус, хочу тебя огорчить, тут будет шифр')
         sleep(4)
-        bot.send_message(message.chat.id, 'И если ты его разгадаешь, а ответ напишешь сюда, ты сможешь узнать секрет 3го задания')
+        bot.send_message(message.chat.id,
+                         'И если ты его разгадаешь, а ответ напишешь сюда, ты сможешь узнать секрет 3го задания')
         sleep(4)
-        bot.send_message(message.chat.id, 'И чуть не забыл, проси подсказку если не будешь справляться(напаши "подсказка")')
+        bot.send_message(message.chat.id,
+                         'И чуть не забыл, проси подсказку если не будешь справляться(напаши "подсказка")')
         bot.send_message(message.chat.id, 'Удачи')
         bot.send_message(message.chat.id, 'Сам шифр:\n'
                                           'пытюбииыб нбобктщ')
@@ -117,4 +120,9 @@ def delete_pin(message):
                     bot.send_photo(i, message.photo[-1].file_id)
 
 
-bot.polling(none_stop=True)
+while True:
+    try:
+        bot.polling(none_stop=True)
+    except Exception as e:
+        print(e)
+        bot.send_message(1036894021, f'Я выключился от ошибки {e}')
